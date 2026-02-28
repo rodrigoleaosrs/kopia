@@ -9,8 +9,8 @@ services:
             - start
             - --disable-csrf-token-checks
             - --address=0.0.0.0:51515
-            - --tls-cert-file=${HOST_CERT}     #/data/coolify/proxy/certs/ubuntu.cert
-            - --tls-key-file=${HOST_KEY}       #/data/coolify/proxy/certs/ubuntu.key
+            - --tls-cert-file=/certs/ubuntu.cert
+            - --tls-key-file=/certs/ubuntu.key
             - --server-username=${KOPIA_SERVER_USERNAME}
             - --server-password=${KOPIA_SERVER_PASSWORD}
         environment:
@@ -19,12 +19,14 @@ services:
             USER: "${KOPIA_USER}"
         volumes:
             # Mount local folders needed by kopia
-            - 'kopia-config:/app/config'
-            - 'kopia-cache:/app/cache'
-            - 'kopia-logs:/app/logs'
+            - kopia-config:/app/config
+            - kopia-cache:/app/cache
+            - kopia-logs:/app/logs
             # Mount local folders to snapshot
-            - 'kopia-data:/data:ro'
+            - kopia-data:/data:ro
             # Mount repository location
-            - 'kopia-repository:/repository'
+            - kopia-repository:/repository
             # Mount path for browsing mounted snapshots
-            - 'kopia-tmp:/tmp'
+            - kopia-tmp:/tmp
+            # Mount paths for certificates
+            - /data/coolify/proxy/certs:/certs:ro
