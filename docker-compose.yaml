@@ -9,6 +9,8 @@ services:
             - start
             - --disable-csrf-token-checks
             - --address=0.0.0.0:51515
+            - --tls-cert-file=${HOST_CERT}     #/data/coolify/proxy/certs/ubuntu.cert
+            - --tls-key-file=${HOST_KEY}       #/data/coolify/proxy/certs/ubuntu.key
             - --server-username=${KOPIA_SERVER_USERNAME}
             - --server-password=${KOPIA_SERVER_PASSWORD}
         environment:
@@ -26,8 +28,3 @@ services:
             - 'kopia-repository:/repository'
             # Mount path for browsing mounted snapshots
             - 'kopia-tmp:/tmp'
-  
-  
-  
-  
-  
