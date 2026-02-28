@@ -18,15 +18,15 @@ services:
             USER: "${KOPIA_USER}"
         volumes:
             # Mount local folders needed by kopia
-            - /opt/kopia/config:/app/config
-            - /opt/kopia/cache:/app/cache
-            - /opt/kopia/logs:/app/logs
+            - 'kopia-config:/app/config'
+            - 'kopia-cache:/app/cache'
+            - 'kopia-logs:/app/logs'
             # Mount local folders to snapshot
-            - /opt/kopia/data:/data:ro
+            - 'kopia-data:/data:ro'
             # Mount repository location
-            - /opt/kopia/repository:/repository
+            - 'kopia-repository:/repository'
             # Mount path for browsing mounted snapshots
-            - /opt/kopia/tmp:/tmp:shared
+            - 'kopia-tmp:/tmp:shared'
   
   
   
