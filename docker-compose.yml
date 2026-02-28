@@ -1,7 +1,7 @@
 services:
     kopia:
         image: kopia/kopia:latest
-        hostname: Hostname
+        hostname: ${KOPIA_HOSTNAME}
         container_name: Kopia
         restart: unless-stopped
         command:
