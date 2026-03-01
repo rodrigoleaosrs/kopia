@@ -32,4 +32,3 @@ services:
             - /data/coolify/proxy/certs:/certs:ro
         labels:
             - "traefik.http.services.kopia.loadbalancer.server.port=51515"
-            - "traefik.http.services.kopia.loadbalancer.server.scheme=https"
