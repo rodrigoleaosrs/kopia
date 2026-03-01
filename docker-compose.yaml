@@ -7,10 +7,11 @@ services:
         command:
             - server
             - start
+            - --insecure
             - --disable-csrf-token-checks
             - --address=0.0.0.0:51515
-            - --tls-cert-file=/certs/ubuntu.cert
-            - --tls-key-file=/certs/ubuntu.key
+            #- --tls-cert-file=/certs/ubuntu.cert
+            #- --tls-key-file=/certs/ubuntu.key
             - --server-username=${KOPIA_SERVER_USERNAME}
             - --server-password=${KOPIA_SERVER_PASSWORD}
         environment:
@@ -29,4 +30,4 @@ services:
             # Mount path for browsing mounted snapshots
             - kopia-tmp:/tmp
             # Mount paths for certificates
-            - /data/coolify/proxy/certs:/certs:ro
+            #- /data/coolify/proxy/certs:/certs:ro
