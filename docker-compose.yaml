@@ -14,15 +14,19 @@ services:
             - --server-password=${KOPIA_SERVER_PASSWORD}
         environment:
             # Set repository password
-            KOPIA_PASSWORD: "${KOPIA_REPO_PASSWORD}"
-            USER: "${KOPIA_USER}"
+            KOPIA_PASSWORD: "${KOPIA_REPO_PASSWORD}"      #optional
+            USER: "${KOPIA_USER}"                         #optional
         volumes:
             # Mount local folders needed by kopia
             - kopia-config:/app/config
             - kopia-cache:/app/cache
             - kopia-logs:/app/logs
             # Mount local folders to snapshot
-            - kopia-data:/data:ro
+            - /data:/backup/data:ro
+            - /etc/fail2ban:/backup/fail2ban:ro
+            - /var/ossec/etc:/backup/wazuh:ro
+            - /etc/logrotate.conf:/backup/logrotate.conf:ro
+            - /etc/logrotate.d:/backup/logrotate.d:ro
             # Mount repository location
             - kopia-repository:/repository
             # Mount path for browsing mounted snapshots
