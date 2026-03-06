@@ -31,5 +31,12 @@ services:
             - kopia-repository:/repository
             # Mount path for browsing mounted snapshots
             - kopia-tmp:/tmp
+        healthcheck:
+          test: ["CMD-SHELL", "curl -sSf -u ${KOPIA_SERVER_USERNAME}:${KOPIA_SERVER_PASSWORD} -o /dev/null http://127.0.0.1:51515  || exit 1"]
+          interval: 1m
+          timeout: 10s
+          retries: 5
+          start_period: 30s
+          start_interval: 5s
         labels:
             - "traefik.http.services.kopia.loadbalancer.server.port=51515"
