@@ -1,2 +1,0 @@
-# kopia
-Kopia for backups
